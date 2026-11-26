@@ -1,90 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0b13">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="AFTERLIGHT">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100d18">
 <link rel="manifest" href="manifest.json">
-<title>AFTERLIGHT</title>
+<title>AFTERLIGHT — Author's Canon</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Unbounded:wght@500;600;700&display=swap');
-:root{--bg:#0b0b13;--panel:#151522;--panel2:#1b1a2b;--line:#ffffff13;--text:#f7f4ff;--muted:#a5a0b7;--violet:#a58aff;--mint:#78e1d1}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0%,#47306b44,transparent 35%),var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;padding-bottom:90px}
-header{padding:calc(16px + env(safe-area-inset-top)) 20px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:#0b0b13eF;backdrop-filter:blur(18px);z-index:5}
-.brand{font:700 17px Unbounded;letter-spacing:1px}.brand span{color:var(--violet)}.status{font-size:10px;color:var(--mint);letter-spacing:1.5px}
-main{max-width:760px;margin:auto;padding:22px 18px}.screen{display:none}.screen.active{display:block}
-.kicker{font-size:10px;letter-spacing:2px;color:var(--mint);font-weight:700}.title{font:600 25px/1.25 Unbounded;margin:10px 0 8px}.sub{color:var(--muted);font-size:13px;line-height:1.65}
-.hero{padding:24px 21px;border:1px solid #a58aff38;border-radius:22px;background:linear-gradient(140deg,#29203f,#171827 65%,#102b30);margin:15px 0 23px;position:relative;overflow:hidden}.hero:after{content:"✦";position:absolute;right:18px;top:0;font-size:110px;color:#c3aaff18}.hero .title{font-size:27px;max-width:290px}.button{border:0;border-radius:13px;padding:14px 17px;background:linear-gradient(110deg,#a58aff,#7756d8);color:white;font-weight:700;font-size:13px;cursor:pointer}.button.ghost{background:#ffffff0b;border:1px solid var(--line)}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:23px 0 12px}.sectionhead h2{font:600 15px Unbounded;margin:0}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:17px;padding:16px;margin:10px 0}.story{display:flex;align-items:center;gap:13px}.orb{width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,#9e7aff,#29394d);display:grid;place-items:center;font-size:22px;flex-shrink:0}.story h3{margin:0 0 4px;font-size:14px}.story p{margin:0;color:var(--muted);font-size:11px}.tag{color:var(--mint);font-size:9px;letter-spacing:1px;margin-top:8px;display:inline-block}
-label{display:block;color:#d7d1e6;font-size:12px;margin:15px 0 7px}input,textarea,select{width:100%;border:1px solid #ffffff1b;border-radius:12px;background:#0f101b;color:var(--text);padding:13px;font:13px 'DM Sans';outline:none}textarea{min-height:95px;resize:vertical}input:focus,textarea:focus{border-color:var(--violet)}.formcard{padding:18px}.hint{font-size:10px;color:var(--muted);line-height:1.5;margin-top:8px}
-.chatbox{height:48vh;min-height:300px;overflow:auto;padding:12px 4px}.bubble{max-width:88%;padding:13px 15px;border-radius:16px;margin:9px 0;font-size:13px;line-height:1.6;white-space:pre-wrap}.mine{background:#393052;margin-left:auto;border:1px solid #a58aff44}.theirs{background:#191b29;border:1px solid var(--line)}.who{font-size:9px;color:var(--mint);letter-spacing:1px;margin-bottom:5px}.composer{display:flex;gap:8px;align-items:end;position:sticky;bottom:84px;background:#0b0b13;padding:9px 0}.composer textarea{min-height:48px;max-height:110px}.composer button{height:48px}
-nav{position:fixed;bottom:0;left:0;right:0;padding:9px 8px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-around;background:#11111df2;border-top:1px solid var(--line);backdrop-filter:blur(18px);z-index:9}nav button{background:none;border:0;color:#918ba5;font:11px 'DM Sans';display:grid;gap:4px;justify-items:center;min-width:60px}nav button b{font-size:19px;font-weight:400}nav button.active{color:var(--violet)}
-.empty{border:1px dashed #ffffff25;border-radius:16px;padding:22px;text-align:center;color:var(--muted);font-size:12px;line-height:1.6}
-.small{font-size:10px;color:var(--muted)}.danger{color:#ff9eae}
-@media(min-width:650px){body{padding-bottom:30px}nav{position:static;max-width:760px;margin:20px auto;border:1px solid var(--line);border-radius:16px}main{padding-top:30px}.chatbox{height:55vh}}
+:root{--bg:#100d18;--panel:#1b1626;--panel2:#241d32;--line:#393047;--text:#f4effb;--muted:#aaa0b9;--accent:#c5a3ff;--accent2:#8d6ac7;--danger:#ff8c9a;--good:#a6e3c1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0%,#302142 0,transparent 35%),var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}
+header{position:sticky;top:0;z-index:5;background:#100d18ed;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:3px;font-size:17px}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;margin-top:3px}
+main{max-width:900px;margin:auto;padding:18px 14px 100px}.screen{display:none}.screen.active{display:block}
+h1{font-size:25px;margin:10px 0 6px}h2{font-size:18px;margin:0 0 12px}.sub{color:var(--muted);line-height:1.45;margin:0 0 18px}
+.card{background:linear-gradient(145deg,var(--panel),#171321);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}
+.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.spread{justify-content:space-between}
+label{display:block;color:#d9cfe7;font-size:13px;margin:12px 0 6px}
+input,textarea,select{width:100%;background:#100d18;border:1px solid var(--line);border-radius:11px;color:var(--text);padding:12px;outline:none}
+textarea{min-height:90px;resize:vertical;line-height:1.45}input:focus,textarea:focus{border-color:var(--accent)}
+.btn{border:1px solid var(--line);background:var(--panel2);padding:10px 14px;border-radius:12px;font-weight:600}
+.btn.primary{background:linear-gradient(135deg,#a987e4,#7655ac);border:0;color:white}
+.btn.ghost{background:transparent}.btn.danger{color:var(--danger)}.btn:disabled{opacity:.4}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.story{padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--panel);text-align:left;width:100%}
+.story strong{display:block;font-size:17px;margin-bottom:6px}.story span{color:var(--muted);font-size:13px}
+.pill{display:inline-block;background:#35294a;color:#d9c4ff;padding:5px 9px;border-radius:20px;font-size:11px;margin:3px 4px 3px 0}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:8;display:flex;justify-content:center;gap:5px;padding:9px 5px calc(9px + env(safe-area-inset-bottom));background:#100d18ed;backdrop-filter:blur(18px);border-top:1px solid var(--line)}
+.nav button{flex:1;max-width:150px;background:transparent;border:0;color:var(--muted);padding:8px 3px;border-radius:10px;font-size:11px}.nav button.active{background:#2a2039;color:var(--accent)}
+.notice{border-left:3px solid var(--accent);padding:10px 12px;background:#211a2d;border-radius:8px;color:#ded3ec;line-height:1.45;font-size:13px}
+.rule{border:1px solid var(--line);padding:12px;border-radius:12px;margin:8px 0;background:#171321}
+.rule b{display:block;margin-bottom:4px}.muted{color:var(--muted);font-size:13px;line-height:1.45}
+.empty{text-align:center;padding:35px 12px;color:var(--muted)}
+.topline{display:flex;align-items:center;gap:10px;margin-bottom:12px}.back{font-size:13px}
+.message{background:var(--panel);border:1px solid var(--line);padding:13px;border-radius:15px;margin:10px 0;white-space:pre-wrap;line-height:1.5}
+.message.user{border-color:#69518d;background:#211a2e}.message.ai{border-color:#414050}
+.message .meta{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-bottom:7px}
+textarea.compact{min-height:65px}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.small{font-size:11px;color:var(--muted)}
+#toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:#eee5ff;color:#20172d;padding:10px 16px;border-radius:30px;display:none;z-index:20;font-weight:700}
+@media(min-width:650px){main{padding-top:28px}.nav{position:static;background:transparent;border:0;padding:14px 0}.nav button{border:1px solid var(--line)}}
 </style>
 </head>
 <body>
-<header><div class="brand">AFTER<span>LIGHT</span></div><div class="status">● YOUR STORY SPACE</div></header>
+<header><div class="brand">AFTERLIGHT<small>YOUR STORY. YOUR CANON.</small></div><button class="btn ghost" id="backupTop">↥ Backup</button></header>
 <main>
-<section class="screen active" id="home">
-<div class="kicker">ТВОЯ РОЛЕВАЯ ВСЕЛЕННАЯ</div><div class="hero"><div class="kicker">WRITE YOUR OWN WORLD</div><div class="title">Истории,<br>которые живут.</div><p class="sub">Создавай персонажей, сохраняй детали и возвращайся к сюжету в любой момент.</p><button class="button" onclick="show('create')">＋ Новая ролка</button></div>
-<div class="sectionhead"><h2>ТВОИ ИСТОРИИ</h2><span class="small" id="count">0 историй</span></div><div id="storyList"></div>
+<section id="home" class="screen active">
+<h1>Твои истории</h1><p class="sub">Каждая история живёт по твоим правилам. Ты решаешь, что является правдой в её мире.</p>
+<div class="row"><button class="btn primary" id="newStory">＋ Новая история</button><button class="btn" id="importBtn">Импорт</button></div>
+<div id="stories" class="grid" style="margin-top:16px"></div>
 </section>
-<section class="screen" id="create">
-<div class="kicker">НОВАЯ ВСЕЛЕННАЯ</div><div class="title">Создать ролку</div><p class="sub">Заполни основу. Все поля можно изменить позже.</p>
-<div class="card formcard">
-<label>Название истории</label><input id="sname" placeholder="Например, Город после полуночи">
-<label>Жанр и атмосфера</label><input id="genre" placeholder="Драма, мистика, slow burn...">
-<label>Сюжет и завязка</label><textarea id="plot" placeholder="Опиши мир, обстоятельства и с чего начинается история..."></textarea>
-<label>Мой персонаж (ИИ)</label><textarea id="aiChar" placeholder="Имя, возраст персонажа, внешность, характер, манера речи..."></textarea>
-<label>Твой персонаж</label><textarea id="userChar" placeholder="Имя, внешность, характер, история..."></textarea>
-<label>Правила отыгрыша</label><textarea id="rules" placeholder="POV, длина постов, что нельзя делать, темп сюжета..."></textarea>
-<button class="button" style="width:100%;margin-top:16px" onclick="saveStory()">Сохранить историю ✦</button>
+<section id="editor" class="screen">
+<div class="topline"><button class="btn back" data-go="home">← Истории</button><span class="pill">НАСТРОЙКИ ИСТОРИИ</span></div>
+<h1 id="editorTitle">Новая история</h1>
+<div class="card">
+<label>Название</label><input id="sTitle" placeholder="Например, Город без рассвета">
+<label>Жанр и атмосфера</label><input id="sGenre" placeholder="Драма, детектив, мрачное фэнтези...">
+<label>Завязка и мир</label><textarea id="sPlot" placeholder="Опиши мир, исходную ситуацию и важные обстоятельства..."></textarea>
+<label>Твой персонаж</label><textarea id="sUser" placeholder="Имя, характер, внешность, цели. ИИ не управляет этим персонажем."></textarea>
+<label>Персонажи, которыми управляет ИИ</label><textarea id="sChars" placeholder="Имена, характеры, цели, связи, секреты..."></textarea>
+<label>Правила повествования</label><textarea id="sRules" placeholder="Например: длинные литературные ответы; не писать действия за моего персонажа."></textarea>
+<div class="notice">Изменения сохраняются в этом браузере. Для облачной синхронизации и настоящего ИИ понадобится сервер — в этой версии их пока нет.</div>
+<div class="row" style="margin-top:15px"><button class="btn primary" id="saveStory">Сохранить</button><button class="btn danger" id="deleteStory">Удалить историю</button></div>
 </div>
 </section>
-<section class="screen" id="chat">
-<div class="row" style="justify-content:space-between"><div><div class="kicker">ROLEPLAY SESSION</div><div class="title" id="chatTitle">Выбери историю</div></div><button class="button ghost" onclick="show('stories')">Мои ролки</button></div>
-<div class="card" style="padding:12px"><div class="small">КРАТКО О СЮЖЕТЕ</div><div id="chatInfo" class="sub" style="margin-top:6px">Создай историю, чтобы начать.</div></div>
-<div class="chatbox" id="messages"><div class="empty">Выбери историю и начни писать первый пост.<br>Твои сообщения сохраняются на этом устройстве.</div></div>
-<div class="composer"><textarea id="msg" rows="1" placeholder="Напиши свой пост..."></textarea><button class="button" onclick="sendMsg()">➤</button></div>
-<p class="hint">Важно: сейчас это локальный прототип — сообщения сохраняются на телефоне, но ИИ ещё не подключён. Чтобы получать ответы персонажа прямо здесь, нужно подключить модель через защищённый сервер/API.</p>
+<section id="detail" class="screen">
+<div class="topline"><button class="btn back" data-go="home">← Истории</button><span class="pill">ИСТОРИЯ</span></div>
+<h1 id="detailTitle"></h1><p id="detailGenre" class="sub"></p>
+<div class="grid">
+<button class="story" data-tab="canon"><strong>📜 Канон автора</strong><span>Факты, которые ИИ не имеет права менять</span></button>
+<button class="story" data-tab="memory"><strong>🧠 Память истории</strong><span>События, отношения и незакрытые линии</span></button>
+<button class="story" data-tab="chat"><strong>✍️ Сцены и сообщения</strong><span>Черновик сцен, редактирование и заметки</span></button>
+<button class="story" data-tab="ideas"><strong>✨ Идеи ИИ</strong><span>Предложения, которые не станут каноном без одобрения</span></button>
+</div>
+<div id="detailPanel"></div>
 </section>
-<section class="screen" id="stories">
-<div class="kicker">ТВОЯ БИБЛИОТЕКА</div><div class="title">Мои ролки</div><div id="allStories"></div>
-</section>
-<section class="screen" id="settings">
-<div class="kicker">PERSONAL SPACE</div><div class="title">Настройки</div>
-<div class="card"><h3 style="margin-top:0">Память историй</h3><p class="sub">Анкеты, правила и переписка сохраняются локально в браузере этого iPhone. Очистка данных Safari может удалить их.</p></div>
-<div class="card"><h3 style="margin-top:0">Подключение ИИ</h3><p class="sub">Для настоящих ответов ИИ потребуется API и небольшой сервер, который безопасно хранит ключ. Не вставляй секретный API-ключ в публичный HTML.</p></div>
-<div class="card"><h3 style="margin-top:0">Данные</h3><button class="button ghost" onclick="exportData()">Экспортировать истории</button> <button class="button ghost danger" onclick="clearData()">Удалить все данные</button></div>
+<section id="settings" class="screen">
+<h1>Настройки AFTERLIGHT</h1>
+<div class="card"><h2>Оформление</h2><label>Цвет акцента</label><select id="accent"><option value="#c5a3ff">Лавандовый</option><option value="#9ed9cf">Морская дымка</option><option value="#e7adbd">Пыльная роза</option><option value="#e5c27e">Тёплое золото</option></select><label>Ссылка на обои (необязательно)</label><input id="wallpaper" placeholder="https://..."><p class="muted">Можно указать прямую ссылку на изображение. Для приватных фото лучше дождаться локальной загрузки в следующей версии.</p><button class="btn primary" id="saveSettings">Применить</button></div>
+<div class="card"><h2>Резервная копия</h2><p class="muted">Экспортируй данные перед очисткой Safari или переносом на другое устройство.</p><button class="btn" id="exportBtn">Экспортировать истории</button><input id="fileInput" type="file" accept="application/json" hidden></div>
+<div class="card"><h2>Что пока не подключено</h2><p class="muted">Реальные ответы ИИ, аккаунты, серверная память и синхронизация между устройствами. Нельзя безопасно подключить ИИ-ключ прямо в HTML — для этого нужен защищённый сервер.</p></div>
 </section>
 </main>
-<nav>
-<button class="active" data-page="home" onclick="show('home')"><b>⌂</b>Главная</button>
-<button data-page="stories" onclick="show('stories')"><b>▤</b>Ролки</button>
-<button data-page="create" onclick="show('create')"><b>＋</b>Создать</button>
-<button data-page="chat" onclick="show('chat')"><b>✧</b>Чат</button>
-<button data-page="settings" onclick="show('settings')"><b>⚙</b>Настройки</button>
+<nav class="nav">
+<button class="active" data-go="home">⌂<br>Истории</button>
+<button data-go="settings">⚙<br>Настройки</button>
 </nav>
+<div id="toast"></div>
 <script>
-let data=JSON.parse(localStorage.getItem('afterlight_data')||'{"stories":[],"active":null}');
-function persist(){localStorage.setItem('afterlight_data',JSON.stringify(data));render();}
-function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));if(id==='chat')renderChat();if(id==='stories')renderStories();window.scrollTo(0,0)}
-function saveStory(){let name=document.getElementById('sname').value.trim();if(!name){alert('Добавь название истории.');return}
-let s={id:Date.now(),name,genre:genre.value,plot:plot.value,aiChar:aiChar.value,userChar:userChar.value,rules:rules.value,messages:[]};data.stories.unshift(s);data.active=s.id;persist();['sname','genre','plot','aiChar','userChar','rules'].forEach(id=>document.getElementById(id).value='');show('chat')}
-function active(){return data.stories.find(s=>s.id===data.active)}
-function openStory(id){data.active=id;persist();show('chat')}
-function render(){let html=data.stories.map(s=>`<div class="card story" onclick="openStory(${s.id})"><div class="orb">✦</div><div style="flex:1"><h3>${esc(s.name)}</h3><p>${esc(s.genre||'Жанр не указан')}</p><span class="tag">${s.messages.length} СООБЩЕНИЙ</span></div><span>›</span></div>`).join('')||'<div class="empty">Пока нет историй.<br>Создай первую ролку — и она появится здесь.</div>';document.getElementById('storyList').innerHTML=html;document.getElementById('allStories').innerHTML=html;document.getElementById('count').textContent=data.stories.length+' историй'}
-function renderStories(){render()}
-function renderChat(){let s=active();document.getElementById('chatTitle').textContent=s?s.name:'Выбери историю';document.getElementById('chatInfo').textContent=s?(s.plot||'Завязка пока не добавлена.'):'Создай историю, чтобы начать.';let box=document.getElementById('messages');if(!s){box.innerHTML='<div class="empty">Сначала создай или выбери историю.</div>';return}box.innerHTML=s.messages.map(m=>`<div class="bubble ${m.role==='user'?'mine':'theirs'}"><div class="who">${m.role==='user'?'ТЫ':'AFTERLIGHT'}</div>${esc(m.text)}</div>`).join('')||'<div class="empty">История готова. Напиши первый пост, чтобы начать.</div>';box.scrollTop=box.scrollHeight}
-function sendMsg(){let s=active(),el=document.getElementById('msg'),text=el.value.trim();if(!s){alert('Сначала создай или выбери историю.');return}if(!text)return;s.messages.push({role:'user',text});el.value='';persist();renderChat()}
-function esc(t){return String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='afterlight-stories.json';a.click();URL.revokeObjectURL(a.href)}
-function clearData(){if(confirm('Точно удалить все истории и сообщения?')){data={stories:[],active:null};persist();show('home')}}
-render();
-if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+const KEY='afterlight_v3_data';
+let data=JSON.parse(localStorage.getItem(KEY)||'{"stories":[],"settings":{}}'), current=null, tab='canon';
+const $=id=>document.getElementById(id);
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2100)}
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.go===id))}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderStories(){
+ const box=$('stories');box.innerHTML='';
+ if(!data.stories.length){box.innerHTML='<div class="empty">Пока здесь тихо.<br>Создай первую историю — и задай ей собственный канон.</div>';return}
+ data.stories.forEach(s=>{let b=document.createElement('button');b.className='story';b.innerHTML=`<strong>${esc(s.title||'Без названия')}</strong><span>${esc(s.genre||'Жанр не указан')}</span><div style="margin-top:10px"><span class="pill">${(s.canon||[]).length} правил канона</span><span class="pill">${(s.messages||[]).length} сообщений</span></div>`;b.onclick=()=>openStory(s.id);box.appendChild(b)})
+}
+function blank(){return {id:Date.now().toString(),title:'',genre:'',plot:'',user:'',chars:'',rules:'',canon:[],memory:[],ideas:[],messages:[]}}
+function editStory(s){current=s.id; $('editorTitle').textContent=s.title||'Новая история';['Title','Genre','Plot','User','Chars','Rules'].forEach(k=>{$('s'+k).value=s[k.toLowerCase()]||''});$('deleteStory').style.display=data.stories.some(x=>x.id===s.id)?'inline-block':'none';show('editor')}
+function getCurrent(){return data.stories.find(s=>s.id===current)}
+function openStory(id){current=id;let s=getCurrent();$('detailTitle').textContent=s.title;$('detailGenre').textContent=s.genre||'Жанр не указан';renderPanel();show('detail')}
+function renderPanel(){
+ let s=getCurrent(), p=$('detailPanel');p.innerHTML='';
+ if(tab==='canon'){
+  p.innerHTML=`<div class="card"><h2>Канон автора</h2><div class="notice">Эти утверждения считаются правдой мира. ИИ не может отменять их или трактовать наоборот. Менять канон можешь только ты.</div><label>Добавить правило или факт</label><textarea id="newCanon" placeholder="Например: Артём и Лея искренне ненавидят друг друга. Никакой скрытой симпатии между ними нет."></textarea><button class="btn primary" id="addCanon">＋ Закрепить в каноне</button><div id="canonList" style="margin-top:12px"></div></div><div class="card"><h2>Базовые правила истории</h2><p class="muted">${esc(s.rules||'Ты пока не добавила общие правила повествования.')}</p><p class="muted">Твой персонаж: ${esc(s.user||'описание не добавлено')}</p><p class="muted">Персонажи ИИ: ${esc(s.chars||'описание не добавлено')}</p></div>`;
+  $('addCanon').onclick=()=>{let v=$('newCanon').value.trim();if(!v)return;s.canon.push({id:Date.now(),text:v});persist();renderPanel();toast('Добавлено в канон')};
+  let list=$('canonList');if(!s.canon.length)list.innerHTML='<p class="empty">Пока нет закреплённых фактов.</p>';s.canon.forEach(c=>{let d=document.createElement('div');d.className='rule';d.innerHTML=`<b>🔒 Факт канона</b><div>${esc(c.text)}</div><div class="row" style="margin-top:9px"><button class="btn" data-edit="${c.id}">Изменить</button><button class="btn danger" data-del="${c.id}">Удалить</button></div>`;list.appendChild(d)});list.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{let c=s.canon.find(x=>x.id==b.dataset.edit),v=prompt('Измени формулировку канона:',c.text);if(v&&v.trim()){c.text=v.trim();persist();renderPanel()}});list.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('Убрать этот факт из канона?')){s.canon=s.canon.filter(x=>x.id!=b.dataset.del);persist();renderPanel()}})
+ }else if(tab==='memory'){
+  p.innerHTML=`<div class="card"><h2>Память истории</h2><p class="muted">Записывай важные события, отношения, секреты и незакрытые сюжетные линии. Позже эти заметки будут передаваться ИИ вместе с каноном.</p><label>Новая заметка</label><textarea id="memText" placeholder="Что произошло? Что нельзя забыть?"></textarea><button class="btn primary" id="addMem">Сохранить заметку</button><div id="memList"></div></div>`;
+  $('addMem').onclick=()=>{let v=$('memText').value.trim();if(v){s.memory.push({id:Date.now(),text:v});persist();renderPanel();toast('Заметка сохранена')}};
+  let list=$('memList');s.memory.forEach(m=>{let d=document.createElement('div');d.className='rule';d.innerHTML=`${esc(m.text)}<div class="row" style="margin-top:8px"><button class="btn" data-e="${m.id}">Изменить</button><button class="btn danger" data-d="${m.id}">Удалить</button></div>`;list.appendChild(d)});list.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{let m=s.memory.find(x=>x.id==b.dataset.e),v=prompt('Измени заметку:',m.text);if(v&&v.trim()){m.text=v.trim();persist();renderPanel()}});list.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{s.memory=s.memory.filter(x=>x.id!=b.dataset.d);persist();renderPanel()})
+ }else if(tab==='ideas'){
+  p.innerHTML=`<div class="card"><h2>Предложения — не канон</h2><div class="notice">Любая идея здесь остаётся только предложением. Она не становится фактом истории, пока ты не нажмёшь «Принять».</div><label>Записать идею</label><textarea id="ideaText" placeholder="Возможный поворот, новая сцена или развитие персонажа..."></textarea><button class="btn primary" id="addIdea">Добавить предложение</button><div id="ideaList"></div></div>`;
+  $('addIdea').onclick=()=>{let v=$('ideaText').value.trim();if(v){s.ideas.push({id:Date.now(),text:v});persist();renderPanel()}};
+  let list=$('ideaList');s.ideas.forEach(i=>{let d=document.createElement('div');d.className='rule';d.innerHTML=`<span class="pill">НА РАССМОТРЕНИИ</span><div>${esc(i.text)}</div><div class="row" style="margin-top:9px"><button class="btn primary" data-accept="${i.id}">Принять в канон</button><button class="btn" data-reject="${i.id}">Отклонить</button></div>`;list.appendChild(d)});list.querySelectorAll('[data-accept]').forEach(b=>b.onclick=()=>{let i=s.ideas.find(x=>x.id==b.dataset.accept);s.canon.push({id:Date.now(),text:i.text});s.ideas=s.ideas.filter(x=>x.id!=i.id);persist();renderPanel();toast('Идея принята в канон')});list.querySelectorAll('[data-reject]').forEach(b=>b.onclick=()=>{s.ideas=s.ideas.filter(x=>x.id!=b.dataset.reject);persist();renderPanel()})
+ }else{
+  p.innerHTML=`<div class="card"><h2>Черновик сцен</h2><p class="muted">Пока это редактор твоих заметок и текстов, а не подключённый ИИ-чат. Ты можешь сохранять и редактировать реплики вручную.</p><label>Кто говорит?</label><input id="msgAuthor" placeholder="Имя персонажа или «Я»"><label>Текст</label><textarea id="msgText" placeholder="Текст реплики или сцены..."></textarea><button class="btn primary" id="addMsg">Добавить в историю</button><div id="msgList"></div></div>`;
+  $('addMsg').onclick=()=>{let t=$('msgText').value.trim();if(t){s.messages.push({id:Date.now(),author:$('msgAuthor').value.trim()||'Заметка',text:t});persist();renderPanel()}};
+  let list=$('msgList');s.messages.forEach(m=>{let d=document.createElement('div');d.className='message';d.innerHTML=`<div class="meta"><b>${esc(m.author)}</b><span>Сохранено локально</span></div><div>${esc(m.text)}</div><div class="row" style="margin-top:9px"><button class="btn" data-me="${m.id}">Редактировать</button><button class="btn danger" data-md="${m.id}">Удалить</button></div>`;list.appendChild(d)});list.querySelectorAll('[data-me]').forEach(b=>b.onclick=()=>{let m=s.messages.find(x=>x.id==b.dataset.me),v=prompt('Измени текст:',m.text);if(v!==null){m.text=v;persist();renderPanel()}});list.querySelectorAll('[data-md]').forEach(b=>b.onclick=()=>{s.messages=s.messages.filter(x=>x.id!=b.dataset.md);persist();renderPanel()})
+ }
+}
+$('newStory').onclick=()=>editStory(blank());
+$('saveStory').onclick=()=>{let s=getCurrent();if(!s){s=blank();data.stories.push(s);current=s.id}['Title','Genre','Plot','User','Chars','Rules'].forEach(k=>s[k.toLowerCase()]=$('s'+k).value.trim());persist();renderStories();openStory(s.id);toast('История сохранена')};
+$('deleteStory').onclick=()=>{if(confirm('Удалить историю вместе с её заметками?')){data.stories=data.stories.filter(s=>s.id!==current);persist();renderStories();show('home')}};
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{show(b.dataset.go);if(b.dataset.go==='home')renderStories()});
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;renderPanel()});
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='afterlight-backup.json';a.click();URL.revokeObjectURL(a.href)}
+$('exportBtn').onclick=exportData;$('backupTop').onclick=exportData;
+$('importBtn').onclick=()=>$('fileInput').click();
+$('fileInput').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!Array.isArray(x.stories))throw 0;if(confirm('Импорт заменить текущие данные?')){data=x;persist();renderStories();toast('Импорт завершён')}}catch{alert('Не удалось прочитать резервную копию')}};r.readAsText(f)};
+$('saveSettings').onclick=()=>{data.settings={accent:$('accent').value,wallpaper:$('wallpaper').value.trim()};persist();document.documentElement.style.setProperty('--accent',data.settings.accent);if(data.settings.wallpaper)document.body.style.backgroundImage=`linear-gradient(#100d18d9,#100d18e8),url("${data.settings.wallpaper}")`;toast('Настройки применены')};
+if(data.settings){$('accent').value=data.settings.accent||'#c5a3ff';$('wallpaper').value=data.settings.wallpaper||'';document.documentElement.style.setProperty('--accent',data.settings.accent||'#c5a3ff');if(data.settings.wallpaper)document.body.style.backgroundImage=`linear-gradient(#100d18d9,#100d18e8),url("${data.settings.wallpaper}")`}
+renderStories();
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
 </body></html>
